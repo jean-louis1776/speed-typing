@@ -1,28 +1,44 @@
 import { Caret } from './Caret'
+import cn from 'classnames'
 
 interface UserTypingsProps {
   userInput: string
+  words: string
   className?: string
 }
 
 interface CharacterProps {
-  char: string
+  actual: string
+  expected: string
 }
 
-export const UserTypings = ({ userInput, className }: UserTypingsProps) => {
+export const UserTypings = ({ userInput, words, className }: UserTypingsProps) => {
   const typedCharacters = userInput.split('')
 
   return (
     <div className={className}>
       {typedCharacters.map((char, index) => (
-        <Character key={`${char}_${index}`} char={char}/>
+        <Character key={`${char}_${index}`} actual={char} expected={words[index]}/>
       ))}
       <Caret/>
     </div>
   )
 }
 
-const Character = ({ char }: CharacterProps) => {
-  return <span className="text-primary-400">{char}</span>
+const Character = ({ actual, expected }: CharacterProps) => {
+  const isCorrect = actual === expected
+  const isWhiteSpace = expected === ' '
+
+  return (
+    <span
+      className={cn({
+        'text-red-400': !isCorrect && !isWhiteSpace,
+        'text-primary-400': isCorrect && !isWhiteSpace,
+        'bg-red-400/50': !isCorrect && isWhiteSpace,
+      })}
+    >
+      {expected}
+    </span>
+  )
 }
 
