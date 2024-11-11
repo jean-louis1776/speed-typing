@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker'
 import { useCallback, useState } from 'react'
+import { faker } from '@faker-js/faker'
 
 const generateWords = (count: number) => {
   return faker.word.words(count).toLowerCase()

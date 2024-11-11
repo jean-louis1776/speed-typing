@@ -1,8 +1,9 @@
 import { CountdownTimer, GeneratedWords, RestartButton, Results, UserTypings, WordsContainer } from './components'
 import useEngine from './hooks/useEngine'
+import { calculateAccuracyPercentage } from './utils/helpers'
 
 const App = () => {
-  const { state, words, timeLeft, typed } = useEngine()
+  const { state, words, timeLeft, typed, errors, restart, totalTyped } = useEngine()
 
   return (
     <>
@@ -11,8 +12,9 @@ const App = () => {
         <GeneratedWords words={words}/>
         <UserTypings userInput={typed} words={words} className={'absolute inset-0'}/>
       </WordsContainer>
-      <RestartButton onRestart={() => null} className={'mx-auto mt-10 text-slate-500'}/>
-      <Results errors={10} accuracyPercentage={100} total={200} className={'mt-10'}/>
+      <RestartButton onRestart={restart} className={'mx-auto mt-10 text-slate-500'}/>
+      <Results state={state} errors={errors} accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
+               total={totalTyped} className={'mt-10'}/>
     </>
   )
 }
