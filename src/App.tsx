@@ -7,14 +7,16 @@ const App = () => {
 
   return (
     <>
-      <CountdownTimer timeLeft={timeLeft}/>
+      <CountdownTimer timeLeft={timeLeft} />
       <WordsContainer>
-        <GeneratedWords words={words}/>
-        <UserTypings userInput={typed} words={words} className={'absolute inset-0'}/>
+        <GeneratedWords words={words} />
+        <UserTypings userInput={typed} words={words} className={'absolute inset-0'} />
       </WordsContainer>
-      <RestartButton onRestart={restart} className={'mx-auto mt-10 text-slate-500'}/>
-      <Results state={state} errors={errors} accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
-               total={totalTyped} className={'mt-10'}/>
+      <RestartButton onRestart={restart} className={'mx-auto mt-10 text-slate-500'} />
+      <Results
+        state={state} errors={errors} accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
+        total={totalTyped} className={'mt-10'}
+      />
     </>
   )
 }

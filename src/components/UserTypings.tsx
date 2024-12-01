@@ -18,9 +18,9 @@ export const UserTypings = ({ userInput, words, className }: UserTypingsProps) =
   return (
     <div className={className}>
       {typedCharacters.map((char, index) => (
-        <Character key={`${char}_${index}`} actual={char} expected={words[index]}/>
+        <Character key={`${char}_${index}`} actual={char} expected={words[index]} />
       ))}
-      <Caret/>
+      <Caret />
     </div>
   )
 }

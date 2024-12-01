@@ -18,16 +18,22 @@ export const Results = ({ state, errors, accuracyPercentage, total, className }:
   if (state !== 'finish') {
     return null
   }
-
+  
   return (
     <motion.ul className={`flex flex-col items-center text-primary-400 space-y-3 ${className}`}>
-      <motion.li initial={initial} animate={animate} transition={{ ...duration, delay: 0 }}
-                 className="text-xl font-semibold">Results
+      <motion.li
+        initial={initial} animate={animate} transition={{ ...duration, delay: 0 }}
+        className="text-xl font-semibold"
+      >Results
       </motion.li>
-      <motion.li initial={initial} animate={animate}
-                 transition={{ ...duration, delay: 0.5 }}>Accuracy: {formatPercentage(accuracyPercentage)}</motion.li>
-      <motion.li initial={initial} animate={animate} transition={{ ...duration, delay: 1 }}
-                 className="text-red-400">Errors: {errors}</motion.li>
+      <motion.li
+        initial={initial} animate={animate}
+        transition={{ ...duration, delay: 0.5 }}
+      >Accuracy: {formatPercentage(accuracyPercentage)}</motion.li>
+      <motion.li
+        initial={initial} animate={animate} transition={{ ...duration, delay: 1 }}
+        className="text-red-400"
+      >Errors: {errors}</motion.li>
       <motion.li initial={initial} animate={animate} transition={{ ...duration, delay: 1.5 }}>Typed: {total}</motion.li>
     </motion.ul>
   )
